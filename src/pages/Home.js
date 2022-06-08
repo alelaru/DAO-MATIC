@@ -79,12 +79,36 @@ const Home = () => {
                   ></Table>
                 </div>
 
+
+                <Form
+                  buttonConfig={{
+                    isLoading: false,
+                    loadingText: "Submitting proposal",
+                    text: "Submit",
+                    theme: "secondary",
+                  }}
+                  data={[
+                    {
+                      inputWidth:"100%",
+                      name: "New Proposal",
+                      type: "textarea",
+                      validation: {
+                        required: true,
+                      },
+                      value:"",
+                    }
+                  ]}
+                  onSubmit={(e) => alert("Proposal submitted")}
+                  title="Create a new proposal"
+                ></Form>
+
             </div>
           </Tab>
           <Tab tabKey={2} tabName="Forum"></Tab>
           <Tab tabKey={3} tabName="Docs"></Tab>
         </TabList>
       </div>
+      <div className="voting"></div>
     </>
   );
 };
