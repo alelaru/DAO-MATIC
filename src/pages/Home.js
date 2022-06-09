@@ -127,7 +127,7 @@ const Home = () => {
   return (
     <>
       <div className="content">
-        <TabList defaultActiveKey={3} tabStyle="bulbUnion">
+        <TabList defaultActiveKey={1} tabStyle="bulbUnion">
           <Tab tabKey={1} tabName="DAO">
             {proposals && (
             <div className="tabContent">
