@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Form, Tab, Table, TabList, Tag, Widget } from "web3uikit";
   import { Link } from "react-router-dom";
 import "./pages.css";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 
 
 const Home = () => {
 
   const [passRate, setpassRate] = useState(0);
-  const [totalP, settotalP] = useState();
-  const [counted, setcounted] = useState();
+  const [totalP, settotalP] = useState(0);
+  const [counted, setcounted] = useState(0);
+  const [voters, setvoters] = useState(0);
   const {Moralis, isInitialized} = useMoralis();
   const [proposals, setProposals] = useState();
+  const web3Api = useMoralisWeb3Api()
 
 
 //Gets the status if a Proposal was already counted
@@ -84,7 +86,37 @@ const Home = () => {
         setpassRate((votesUp / results.length) * 100)
       }
 
+      // const fetchTokenIdOwners = async () => {
+      //   const options = {
+      //     address: "0x2953399124F0cBB46d2CbACD8A89cF0599974963",
+      //     token_id: "12835986292511335873938670637662345165934733163599367773378791910520532238536",
+      //     chain: "mumbai"
+      //   };
+      //   const tokenIdOwners = await web3Api.token.getTokenIdOwners(options);
+      //   console.log("Here", tokenIdOwners);
+      //   const addresses = tokenIdOwners.result.map(e => e.owner_of);
+      //   setvoters(addresses);
+      //   console.log("Array",tokenIdOwners.result);
+      // };
 
+      const fetchTokenIdOwners = async () => {
+        const options = {
+          address: "0x2953399124F0cBB46d2CbACD8A89cF0599974963",
+          token_id:
+            "43970464009901776444914858904527304823234795497029481751764904722192110977224",
+          chain: "mumbai",
+        };
+        const tokenIdOwners = await web3Api.token.getTokenIdOwners(options);
+                console.log("Here", tokenIdOwners);
+
+        const addresses = tokenIdOwners.result.map((e) => e.owner_of);
+                console.log("Array",tokenIdOwners.result);
+
+        setvoters(addresses);
+      };
+
+
+      fetchTokenIdOwners()
       getProposals()
       getPassRate()
 
@@ -113,7 +145,7 @@ const Home = () => {
                     </div>
                   </div>
                 </Widget>
-                <Widget info={243} title="Elegible Voters"></Widget>
+                <Widget info={voters.length} title="Elegible Voters"></Widget>
                 <Widget info={totalP-counted} title="Ongoing Proposals"></Widget>
               </div>
               Recent Proposals
