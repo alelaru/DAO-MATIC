@@ -79,6 +79,7 @@ const Proposal = () => {
               svg={e.attributes.votedFor ? "checkmark" :  "arrowCircleDown"} />
           ]);
           
+          console.log("Hey you",votesDirection);
           setvotes(votesDirection)
 
       }

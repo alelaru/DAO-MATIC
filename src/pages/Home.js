@@ -21,12 +21,13 @@ const Home = () => {
     const proposalCounts = Moralis.Object.extend("ProposalsCounted")
     const query = new Moralis.Query(proposalCounts);
     // Gets the proposal that has the same `Id` and gets the first match (Unique identifier)
-    query.equalTo("uid", proposalId)
+    query.equalTo("proposalId", proposalId)
     const result = await query.first()
+    console.log("result", result);
 
     if(result !== undefined){
       if(result.attributes.result){
-        return { color: "red", text: "Passed"}
+        return { color: "green", text: "Passed"}
       }
       else{
         return { color: "red", text: "Rejected"}
