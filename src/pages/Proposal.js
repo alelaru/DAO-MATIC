@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Blockie, Form, Icon, Table, Tag, Tooltip, Widget } from "web3uikit";
 import "./pages.css";
+import { useLocation } from "react-router"
 
 const Proposal = () => {
+
+    const { state: proposalDetails } = useLocation()
 
   const [votes, setvotes] = useState([
     [
@@ -38,13 +41,13 @@ const Proposal = () => {
                 Overview
               </div>
             </Link>
-            <div>Should we accept Elon Musks offer for our DAO?</div>
+            <div>{proposalDetails.description}</div>
             <div className="proposalOverview">
-              <Tag color={"red"} text={"Rejected"}></Tag>
+              <Tag color={proposalDetails.color} text={proposalDetails.text}></Tag>
               <div className="proposer">
                 <span>Proposed By</span>
-                <Tooltip content={"0x1C60e929102F7fb2e49E7f52e6AbAdF42484a0c5"}>
-                  <Blockie seed="0x1C60e929102F7fb2e49E7f52e6AbAdF4248412e5"></Blockie>
+                <Tooltip content={proposalDetails.proposer}>
+                  <Blockie seed={proposalDetails.proposer}></Blockie>
                 </Tooltip>
               </div>
             </div>
