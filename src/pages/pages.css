@@ -30,7 +30,7 @@
 
   .backHome {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     margin-bottom: 20px;
     font-size: 12px;
     align-items: center;
@@ -79,7 +79,7 @@
   
   .extraTitle{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
   
   .progress{
