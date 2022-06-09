@@ -1,44 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { Form, Tab, Table, TabList, Tag, Widget } from "web3uikit";
-import { Link } from "react-router-dom";
+  import { Link } from "react-router-dom";
 import "./pages.css";
+import { useMoralis } from "react-moralis";
 
 
 const Home = () => {
 
-  const [proposals, setProposals] = useState(
+  const [passRate, setpassRate] = useState(0);
+  const [totalP, settotalP] = useState();
+  const [counted, setcounted] = useState();
+  const {Moralis, isInitialized} = useMoralis();
+  const [proposals, setProposals] = useState([]);
 
-    [
-      [
-        1,
-        <div>Should we start a Moralis hamburger chain?</div>,
-        <Tag color="green" text="Passed" />,
-      ],
-      [
-        2,
-        "Should we accept Elon Musks $44billion offer for our DAO?",
-        <Link to="/proposal" state={"hello"}>
-          <Tag color="red" text="Rejected" />
-        </Link>,
-      ],
-      [
-        3,
-        "Do you want a Web3 Slack tutorial?",
-        <Tag color="blue" text="Ongoing" />,
-      ],
-      [
-        4,
-        "Are you interested in Xbox/Console web3 tutorials?",
-        <Tag color="blue" text="Ongoing" />,
-      ],
-      [
-        5,
-        "Would you attend a Moralis Builder get together in Miami?",
-        <Tag color="blue" text="Ongoing" />,
-      ],
-  ]
 
-  );
+//Gets the status if a Proposal was already counted
+  async function getStatus(proposalId){
+    const proposalCounts = Moralis.Object.extend("ProposalsCounted")
+    const query = new Moralis.Query(proposalCounts);
+    // Gets the proposal that has the same `Id` and gets the first match (Unique identifier)
+    query.equalTo("uid", proposalId)
+    const result = await query.first()
+
+    if(result !== undefined){
+      if(result.attributes.result){
+        return { color: "red", rext: "Passed"}
+      }
+      else{
+        return { color: "red", rext: "Rejected"}
+      }
+    }
+    else{
+      return { color: "blue", rext: "Ongoing"}
+    }
+
+
+  }
  
   return (
     <>
