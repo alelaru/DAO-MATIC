@@ -95,6 +95,7 @@ const Home = () => {
               proposer: e.attributes.proposer
               
               }}>
+
               <Tag
                 color={(await getStatus(e.attributes.uid)).color}
                 text={(await getStatus(e.attributes.uid)).text}
@@ -139,6 +140,8 @@ const Home = () => {
       getPassRate();
     }
   }, [isInitialized]);
+
+  console.log("voters",voters);
 
   return (
     <>

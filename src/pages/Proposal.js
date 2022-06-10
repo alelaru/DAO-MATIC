@@ -6,7 +6,6 @@ import { useLocation } from "react-router";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 
 const Proposal = () => {
-
   const { state: proposalDetails } = useLocation();
   const { Moralis, isInitialized } = useMoralis();
   const [latestVote, setLatestVote] = useState();
@@ -16,11 +15,32 @@ const Proposal = () => {
   const [sub, setSub] = useState(false);
   const contractProcessor = useWeb3ExecuteFunction();
 
+  const [votes2, setvotes2] = useState([
+    [
+      "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+      <Icon fill="#268c41" size={24} svg="checkmark" />,
+    ],
+    [
+      "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+      <Icon fill="#268c41" size={24} svg="checkmark" />,
+    ],
+    [
+      "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+      <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
+    ],
+    [
+      "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+      <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
+    ],
+    [
+      "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+      <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
+    ],
+  ]);
+
   useEffect(() => {
     if (isInitialized) {
-      
       async function getVotes() {
-        
         const Votes = Moralis.Object.extend("Votes");
         const query = new Moralis.Query(Votes);
         query.equalTo("proposalId", proposalDetails.id);
@@ -46,8 +66,7 @@ const Proposal = () => {
           );
         }
 
-
-        const votesDirection = results.map((e,i) => [
+        const votesDirection = results.map((e, i) => [
           e.attributes.voter,
           <Icon
             fill={e.attributes.votedFor ? "#2cc40a" : "#d93d3d"}
@@ -57,33 +76,22 @@ const Proposal = () => {
           />,
         ]);
         setVotes(votesDirection);
-
       }
       getVotes();
-
     }
   }, [isInitialized]);
 
-
-
   async function castVote(upDown) {
-    
+    console.log(proposalDetails.id);
+
     let options = {
-      contractAddress: "0xF304Ddf294d05c80995FB0702b40DfEA8E48582a",
+      contractAddress: "0x124Ca287f41661C965d52ccc78466684d44B061e",
       functionName: "voteOnProposal",
       abi: [
         {
           inputs: [
-            {
-              internalType: "uint256",
-              name: "_id",
-              type: "uint256",
-            },
-            {
-              internalType: "bool",
-              name: "_vote",
-              type: "bool",
-            },
+            { internalType: "uint256", name: "_id", type: "uint256" },
+            { internalType: "bool", name: "_vote", type: "bool" },
           ],
           name: "voteOnProposal",
           outputs: [],
@@ -97,7 +105,6 @@ const Proposal = () => {
       },
     };
 
-
     await contractProcessor.fetch({
       params: options,
       onSuccess: () => {
@@ -109,7 +116,6 @@ const Proposal = () => {
         setSub(false);
       },
     });
-
   }
 
   return (
@@ -134,36 +140,36 @@ const Proposal = () => {
           </div>
         </div>
         {latestVote && (
-        <div className="widgets">
-          <Widget info={latestVote.votesUp} title="Votes For">
-            <div className="extraWidgetInfo">
-              <div className="extraTitle">{percUp}%</div>
-              <div className="progress">
-                <div
-                  className="progressPercentage"
-                  style={{ width: `${percUp}%` }}
-                ></div>
+          <div className="widgets">
+            <Widget info={latestVote.votesUp} title="Votes For">
+              <div className="extraWidgetInfo">
+                <div className="extraTitle">{percUp}%</div>
+                <div className="progress">
+                  <div
+                    className="progressPercentage"
+                    style={{ width: `${percUp}%` }}
+                  ></div>
+                </div>
               </div>
-            </div>
-          </Widget>
-          <Widget info={latestVote.votesDown} title="Votes Against">
-            <div className="extraWidgetInfo">
-              <div className="extraTitle">{percDown}%</div>
-              <div className="progress">
-                <div
-                  className="progressPercentage"
-                  style={{ width: `${percDown}%` }}
-                ></div>
+            </Widget>
+            <Widget info={latestVote.votesDown} title="Votes Against">
+              <div className="extraWidgetInfo">
+                <div className="extraTitle">{percDown}%</div>
+                <div className="progress">
+                  <div
+                    className="progressPercentage"
+                    style={{ width: `${percDown}%` }}
+                  ></div>
+                </div>
               </div>
-            </div>
-          </Widget>
-        </div>
+            </Widget>
+          </div>
         )}
         <div className="votesDiv">
           <Table
             style={{ width: "60%" }}
             columnsConfig="90% 10%"
-            data={votes}
+            data={votes2}
             header={[<span key={1}>Address</span>, <span key={2}>Vote</span>]}
             pageSize={5}
           />
@@ -211,4 +217,3 @@ const Proposal = () => {
 };
 
 export default Proposal;
-
