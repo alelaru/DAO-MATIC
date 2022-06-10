@@ -50,8 +50,8 @@ const Home = () => {
         setsub(false);
       },
       onError: (e) => {
-        alert(e.data.message);
         setsub(false);
+        alert(e.data.message);
       },
     });
   }
