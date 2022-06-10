@@ -63,7 +63,7 @@ const Home = () => {
     // Gets the proposal that has the same `Id` and gets the first match (Unique identifier)
     query.equalTo("proposalId", proposalId);
     const result = await query.first();
-    console.log("result", result);
+    // console.log("result", result);
 
     if (result !== undefined) {
       if (result.attributes.result) {
@@ -123,19 +123,6 @@ const Home = () => {
         setpassRate((votesUp / results.length) * 100);
       }
 
-      // const fetchTokenIdOwners = async () => {
-      //   const options = {
-      //     address: "0x2953399124F0cBB46d2CbACD8A89cF0599974963",
-      //     token_id: "12835986292511335873938670637662345165934733163599367773378791910520532238536",
-      //     chain: "mumbai"
-      //   };
-      //   const tokenIdOwners = await web3Api.token.getTokenIdOwners(options);
-      //   console.log("Here", tokenIdOwners);
-      //   const addresses = tokenIdOwners.result.map(e => e.owner_of);
-      //   setvoters(addresses);
-      //   console.log("Array",tokenIdOwners.result);
-      // };
-
       const fetchTokenIdOwners = async () => {
         const options = {
           address: "0x2953399124F0cBB46d2CbACD8A89cF0599974963",
@@ -144,10 +131,8 @@ const Home = () => {
           chain: "mumbai",
         };
         const tokenIdOwners = await web3Api.token.getTokenIdOwners(options);
-        console.log("Here", tokenIdOwners);
 
         const addresses = tokenIdOwners.result.map((e) => e.owner_of);
-        console.log("Array", tokenIdOwners.result);
 
         setvoters(addresses);
       };
