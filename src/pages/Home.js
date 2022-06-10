@@ -87,23 +87,21 @@ const Home = () => {
           results.map(async (e) => [
             e.attributes.uid,
             e.attributes.description,
-            <Link
-              to="/proposal"
-              state={{
-                description: e.attributes.description,
-                color: (await getStatus(e.attributes.uid)).color,
-                text: (await getStatus(e.attributes.uid)).text,
-                id: e.attributes.uid,
-                proposer: e.attributes.proposer,
-              }}
-            >
+            <Link to="/proposal" state={{
+              description: e.attributes.description,
+              color: (await getStatus(e.attributes.uid)).color,
+              text: (await getStatus(e.attributes.uid)).text,
+              id: e.attributes.uid,
+              proposer: e.attributes.proposer
+              
+              }}>
               <Tag
                 color={(await getStatus(e.attributes.uid)).color}
                 text={(await getStatus(e.attributes.uid)).text}
-              ></Tag>
+              />
             </Link>,
           ])
-        );
+        ); 
         setProposals(table);
         settotalP(results.length);
       }
@@ -133,8 +131,7 @@ const Home = () => {
         const tokenIdOwners = await web3Api.token.getTokenIdOwners(options);
 
         const addresses = tokenIdOwners.result.map((e) => e.owner_of);
-
-        setvoters(addresses);
+        setvoters(addresses);        
       };
 
       fetchTokenIdOwners();
