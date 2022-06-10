@@ -207,7 +207,7 @@ const Proposal = () => {
                 },
               },
             ]}
-            isDisabled={sub}
+            isDisabled={proposalDetails.text !== 'Ongoing'}
             onSubmit={(e) => {
               // alert('Vote cast')
               setsub(true)
