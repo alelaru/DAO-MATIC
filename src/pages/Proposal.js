@@ -16,28 +16,28 @@ const Proposal = () => {
   const [sub, setSub] = useState(false);
   const contractProcessor = useWeb3ExecuteFunction();
 
-  const [votes2, setvotes2] = useState([
-    [
-      "0x4d2044D8D568c1644158625930De62c4AbBB004a",
-      <Icon fill="#268c41" size={24} svg="checkmark" />,
-    ],
-    [
-      "0x4d2044D8D568c1644158625930De62c4AbBB004a",
-      <Icon fill="#268c41" size={24} svg="checkmark" />,
-    ],
-    [
-      "0x4d2044D8D568c1644158625930De62c4AbBB004a",
-      <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
-    ],
-    [
-      "0x4d2044D8D568c1644158625930De62c4AbBB004a",
-      <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
-    ],
-    [
-      "0x4d2044D8D568c1644158625930De62c4AbBB004a",
-      <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
-    ],
-  ]);
+  // const [votes2, setvotes2] = useState([
+  //   [
+  //     "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+  //     <Icon fill="#268c41" size={24} svg="checkmark" />,
+  //   ],
+  //   [
+  //     "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+  //     <Icon fill="#268c41" size={24} svg="checkmark" />,
+  //   ],
+  //   [
+  //     "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+  //     <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
+  //   ],
+  //   [
+  //     "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+  //     <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
+  //   ],
+  //   [
+  //     "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+  //     <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
+  //   ],
+  // ]);
 
   useEffect(() => {
     if (isInitialized) {
@@ -80,7 +80,7 @@ const Proposal = () => {
       }
       getVotes();
     }
-  }, [isInitialized, votes2 ]);
+  }, [isInitialized]);
 
   async function castVote(upDown) {
     console.log(proposalDetails.id);
@@ -110,13 +110,6 @@ const Proposal = () => {
       params: options,
       onSuccess: () => {
         console.log("Vote Cast Succesfully");
-        setVotes2(
-          [...votes2 , 
-          [
-            "0x4d2044D8D568c1644158625930De62c4AbBB004a",
-            <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
-          ]
-          ]);
         setSub(false);
       },
       onError: (error) => {
@@ -124,10 +117,6 @@ const Proposal = () => {
         setSub(false);
       },
     });
-  }
-
-  const setVotes2 = () => {
-
   }
 
   return (
@@ -216,18 +205,15 @@ const Proposal = () => {
             title="Cast Vote"
           />
         </div>
-                  <Table
+                  {/* <Table
             style={{ width: "60%" }}
             columnsConfig="90% 10%"
             data={votes2}
             header={[<span>Address</span>, <span>Vote</span>]}
             pageSize={5}
-          />
-                  <TableVotes data={votes}></TableVotes>
+          /> */}
 
       </div>
-      <div className="voting"></div>
-      <div className="">{votes}</div>
     </>
   );
 };
