@@ -141,8 +141,6 @@ const Home = () => {
     }
   }, [isInitialized]);
 
-  console.log("voters",voters);
-
   return (
     <>
       <div className="content">

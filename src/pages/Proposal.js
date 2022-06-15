@@ -4,6 +4,7 @@ import { Tag, Widget, Blockie, Tooltip, Icon, Form, Table } from "web3uikit";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
+import TableVotes from "./TableVotes";
 
 const Proposal = () => {
   const { state: proposalDetails } = useLocation();
@@ -79,7 +80,7 @@ const Proposal = () => {
       }
       getVotes();
     }
-  }, [isInitialized]);
+  }, [isInitialized, votes2 ]);
 
   async function castVote(upDown) {
     console.log(proposalDetails.id);
@@ -109,6 +110,13 @@ const Proposal = () => {
       params: options,
       onSuccess: () => {
         console.log("Vote Cast Succesfully");
+        setVotes2(
+          [...votes2 , 
+          [
+            "0x4d2044D8D568c1644158625930De62c4AbBB004a",
+            <Icon fill="#d93d3d" size={24} svg="arrowCircleDown" />,
+          ]
+          ]);
         setSub(false);
       },
       onError: (error) => {
@@ -116,6 +124,10 @@ const Proposal = () => {
         setSub(false);
       },
     });
+  }
+
+  const setVotes2 = () => {
+
   }
 
   return (
@@ -166,13 +178,8 @@ const Proposal = () => {
           </div>
         )}
         <div className="votesDiv">
-          <Table
-            style={{ width: "60%" }}
-            columnsConfig="90% 10%"
-            data={votes2}
-            header={[<span key={1}>Address</span>, <span key={2}>Vote</span>]}
-            pageSize={5}
-          />
+
+          <TableVotes data={votes}></TableVotes>
 
           <Form
             isDisabled={proposalDetails.text !== "Ongoing"}
@@ -209,6 +216,15 @@ const Proposal = () => {
             title="Cast Vote"
           />
         </div>
+                  <Table
+            style={{ width: "60%" }}
+            columnsConfig="90% 10%"
+            data={votes2}
+            header={[<span>Address</span>, <span>Vote</span>]}
+            pageSize={5}
+          />
+                  <TableVotes data={votes}></TableVotes>
+
       </div>
       <div className="voting"></div>
       <div className="">{votes}</div>

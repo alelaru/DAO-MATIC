@@ -1,0 +1,220 @@
+.tableFoundation{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 26px;
+
+  }
+
+  .tablefoundation2{
+    background: radial-gradient( 106.45% 108.64% at 32.33% -4.84%, #ecf5fc 0.52%, #cee4f3 100% );
+    border-radius: 20px;
+    padding: 1px;
+    position: relative;
+    overflow-x: scroll;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 26px;
+    display: block;
+  }
+
+  .tableDivider{
+    border: none;
+    box-sizing: border-box;
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    color: #68738D;
+    fill: #68738D;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    -webkit-letter-spacing: 0;
+    -moz-letter-spacing: 0;
+    -ms-letter-spacing: 0;
+    letter-spacing: 0;
+    line-height: 24px;
+    padding-bottom: 11px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgb(48 71 105 / 10%);
+    background-color: white;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    -webkit-column-gap: 11px;
+    column-gap: 11px;
+    overflow: hidden;
+    min-height: -webkit-fit-content;
+    min-height: -moz-fit-content;
+    min-height: fit-content;
+    min-width: -webkit-fit-content;
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+  }
+
+  .tableHeader{
+    padding-left: 22px;
+    font-weight: 600;
+    padding: 12px 0;
+  }
+
+  .lineDivider{
+    padding-top: 1px;
+    background: radial-gradient( 106.45% 108.64% at 32.33% -4.84%, #ecf5fc 0.52%, #cee4f3 100% );
+    grid-column: 1 / -1;
+  }
+
+  .addressUser{
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+    -webkit-box-pack: start;
+    -webkit-justify-content: start;
+    -ms-flex-pack: start;
+    justify-content: start;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 16px 0 16px 22px;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400
+  }
+
+  .voteDisplay{
+    padding-right: 22px;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: start;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 16px 0;
+  }
+
+  .dataNothing{
+    border: none;
+    box-sizing: border-box;
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    color: #68738D;
+    fill: #68738D;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 24px;
+    display: grid;
+    min-height: fit-content;
+    align-items: flex-start;
+    -webkit-box-pack: center;
+    justify-content: center;
+    grid-column: 1 / -1;
+
+  }
+  
+  .content{
+    margin-top: -60px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .contentProposal{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 26px;
+    width:60vw;
+    left: 20vw;
+    position: absolute;
+  }
+
+  .proposal{
+    margin-bottom: 40px;
+  }
+
+  .votesDiv{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .backHome {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    font-size: 12px;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .proposalOverview{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .proposer {
+    display: flex;
+    font-size: 12px;
+    gap: 10px;
+    color:rgba(0, 0, 0, 0.5);
+    align-items: center;
+  }
+  
+  .tabContent {
+    left: 20vw;
+    position: absolute;
+    width:60vw;
+    margin-top: 50px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 26px;
+  }
+  
+  .widgets { 
+    display: flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    height:120px;
+  }
+  
+  .extraWidgetInfo{
+    color:rgba(6, 158, 252, 0.5);
+    font-size: 12px;
+    width: 50%;
+    margin-top: 10px;
+  }
+  
+  .extraTitle{
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .progress{
+    margin-top: 20px;
+    height:8px;
+    background-color:rgb(222, 222, 222);
+    border-radius: 4px;
+  }
+  
+  .progressPercentage{
+    height:8px;
+    background-color:rgba(6, 158, 252, 0.5);
+    border-radius: 4px;
+  }
+  
