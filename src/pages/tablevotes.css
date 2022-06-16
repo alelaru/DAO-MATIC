@@ -71,11 +71,11 @@
   .addressUser{
     -webkit-box-align: start;
     -ms-flex-align: start;
-    align-items: start;
+    align-items: flex-start;
     -webkit-box-pack: start;
     -webkit-justify-content: start;
     -ms-flex-pack: start;
-    justify-content: start;
+    justify-content: flex-start;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -91,10 +91,10 @@
     padding-right: 22px;
     -webkit-box-align: start;
     -ms-flex-align: start;
-    align-items: start;
+    align-items: flex-start;
     -webkit-box-pack: start;
     -ms-flex-pack: start;
-    justify-content: start;
+    justify-content: flex-start;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
